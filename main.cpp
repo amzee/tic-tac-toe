@@ -128,7 +128,6 @@ int main(){
 
         if(draw){
             displayText = "Its a draw";
-            break;
         }
 
     }
