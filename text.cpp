@@ -6,10 +6,10 @@ Text::Text(const std::string &fontPath,int fontSize,const std::string &text,cons
     SDL_QueryTexture(_texture,nullptr,nullptr,&_rect.w,&_rect.h);
 }
 
-void Text::display(int x,int y) const
+void Text::display() const
 {
-    _rect.x = x;
-    _rect.y = y;
+    _rect.y = 420;
+    _rect.x = 250 - (_rect.w/2);
 
     SDL_RenderCopy(Window::renderer,_texture,nullptr,&_rect);
 }

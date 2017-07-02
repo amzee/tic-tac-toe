@@ -5,6 +5,8 @@
 #include "text.h"
 
 #include <vector>
+#include <string>
+#include <iostream>
 
 bool draw = false;
 int moveCount = 0;
@@ -64,6 +66,11 @@ int main(){
     Grid grd;
     std::vector<std::vector<Rect>> boundaries(3,std::vector<Rect>(3));
 
+    std::string fontPath = "res/font.ttf";
+    SDL_Color white{255,255,255,255};
+    int fontSize = 30;
+    std::string displayText = "Lets Begin";
+
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
             int x = 150+(100*i);
@@ -77,10 +84,12 @@ int main(){
     bool player = true;
     bool gameOver = false;
 
-    while(!screen.isClosed() && !gameOver){
+    while(!screen.isClosed()){
 
+        Text label(fontPath,fontSize,displayText,white);
         screen.clear();
         grd.draw();
+        label.display();
         grd.drawElements(boundaries,gridState);
         SDL_Event event;
 
@@ -95,12 +104,14 @@ int main(){
                         if(player){
                             gridState[i][j] = circle;
                             gameOver = checkifWon(gridState,i,j,circle);
+                            displayText = "Player 2's turn";
                         }else{
                             gridState[i][j] = cross;
                             gameOver = checkifWon(gridState,i,j,cross);
+                            displayText = "Player 1's turn";
                         }
                         player = !player;
-                        std::cout << moveCount << std::endl; 
+                        //std::cout << moveCount << std::endl; 
                     }
                 }
             }
@@ -109,14 +120,14 @@ int main(){
 
         if(gameOver && !draw){
             if(player){
-                std::cout << "Player 2 Won" << std::endl;
+                displayText = "Player 2 Won";
             }else{
-                std::cout << "Player 1 Won" << std::endl;
+                displayText = "Player 1 Won";
             }
         }
 
         if(draw){
-            std::cout << "Game Drawn" << std::endl;
+            displayText = "Its a draw";
             break;
         }
 

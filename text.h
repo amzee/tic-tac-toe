@@ -10,7 +10,7 @@ class Text{
 
 public:
     Text(const std::string &fontPath,int fontSize,const std::string &text,const SDL_Color &color);
-    void display(int x,int y) const;
+    void display() const;
     static SDL_Texture *loadFont(SDL_Renderer *renderer,const std::string &fontPath,int fontSize,const std::string &text,const SDL_Color &color);
 
 private:
