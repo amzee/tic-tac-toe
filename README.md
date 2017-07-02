@@ -2,5 +2,5 @@
 
 ### Todo:
 
-- Adding Text
+- ~~Adding Text~~
 - Including Single Player Mode
