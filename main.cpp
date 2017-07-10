@@ -3,63 +3,11 @@
 #include "rect.h"
 #include "state.h"
 #include "text.h"
+#include "ai.h"
 
 #include <vector>
 #include <string>
 #include <iostream>
-
-bool draw = false;
-int moveCount = 0;
-
-bool checkifWon(const std::vector<std::vector<state>> &gridState,int x,int y,state s){
-
-    for(int i=0;i<3;i++){
-        if(gridState[x][i] != s){
-            break;
-        }
-        if(i==2){
-            return true;
-        } 
-    }
-
-    for(int i=0;i<3;i++){
-        if(gridState[i][y] != s){
-            break;
-        }
-        if(i==2){
-            return true;
-        }
-    }
-
-    if(x==y){
-        for(int i=0;i<3;i++){
-            if(gridState[i][i] != s){
-                break;
-            }
-
-            if(i==2){
-                return true;
-            }
-        }
-    }
-
-    if(x+y == 2){
-        for(int i=0;i<3;i++){
-            if(gridState[i][2-i] != s){
-                break;
-            }
-
-            if(i==2){
-                return true;
-            }
-        }
-    }
-
-    if(moveCount == 9){
-        draw = true;
-    }
-    return false;
-}
 
 int main(){
     Window screen("Tic Tac Toe",500,500);
@@ -70,6 +18,9 @@ int main(){
     SDL_Color white{255,255,255,255};
     int fontSize = 30;
     std::string displayText = "Lets Begin";
+
+    bool draw = false;
+    int moveCount = 0;
 
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
@@ -103,11 +54,11 @@ int main(){
                         moveCount++;
                         if(player){
                             gridState[i][j] = circle;
-                            gameOver = checkifWon(gridState,i,j,circle);
+                            gameOver = checkifWon(gridState,i,j,circle,moveCount,&draw);
                             displayText = "Player 2's turn";
                         }else{
                             gridState[i][j] = cross;
-                            gameOver = checkifWon(gridState,i,j,cross);
+                            gameOver = checkifWon(gridState,i,j,cross,moveCount,&draw);
                             displayText = "Player 1's turn";
                         }
                         player = !player;
