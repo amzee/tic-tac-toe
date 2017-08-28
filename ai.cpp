@@ -50,6 +50,19 @@ bool checkifWon(const std::vector<std::vector<state>> &gridState,int x,int y,sta
     return false;
 }
 
+void chooseMove(std::vector<std::vector>> &gridState){
+
+    int x=0,y=0;
+
+    int score = INT_MIN;
+
+    for(int i=0;i<3;i++){
+        for(int j=0;j<3;j++){
+            if(dfs())
+        }  
+    }
+
+}
 
 int dfs(std::vector<std::vector<state>> gridState,bool circle){
     int score = INT_MIN;
@@ -69,3 +82,4 @@ int dfs(std::vector<std::vector<state>> gridState,bool circle){
         }
     }
 }
+
