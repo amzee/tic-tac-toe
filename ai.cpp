@@ -1,6 +1,6 @@
 #include "ai.h"
 
-bool checkifWon(const std::vector<std::vector<state>> &gridState,int x,int y,state s,int moveCount,bool *draw){
+bool checkifWon(const std::vector<std::vector<state> > &gridState,int x,int y,state s,int moveCount,bool *draw){
 
     for(int i=0;i<3;i++){
         if(gridState[x][i] != s){
@@ -46,10 +46,11 @@ bool checkifWon(const std::vector<std::vector<state>> &gridState,int x,int y,sta
 
     if(moveCount == 9){
         *draw = true;
+        return true;
     }
     return false;
 }
-
+/*
 void chooseMove(std::vector<std::vector>> &gridState){
 
     int x=0,y=0;
@@ -58,7 +59,8 @@ void chooseMove(std::vector<std::vector>> &gridState){
 
     for(int i=0;i<3;i++){
         for(int j=0;j<3;j++){
-            if(dfs())
+            dfs(gridState,true) 
+            if(dfs(gridState,true) )
         }  
     }
 
@@ -83,3 +85,4 @@ int dfs(std::vector<std::vector<state>> gridState,bool circle){
     }
 }
 
+*/

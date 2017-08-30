@@ -48,6 +48,16 @@ int main(){
 
             screen.pollEvents(event);
 
+            if(gameOver){
+                if(event.key.keysym.sym == SDLK_RETURN){
+                    for(int i=0;i<3;i++){
+                        std::fill(gridState[i].begin(),gridState[i].end(),empty);
+                    }
+                    displayText = "Let's play again";
+                    gameOver = false;
+                }
+            }
+
             for(int i=0;i<3;i++){
                 for(int j=0;j<3;j++){
                     if(boundaries[i][j].isClicked(event) && gridState[i][j] == empty){
@@ -69,18 +79,19 @@ int main(){
 
         }
 
-        if(gameOver && !draw){
-            if(player){
-                displayText = "Player 2 Won";
-            }else{
-                displayText = "Player 1 Won";
-            }
-        }
-
-        if(draw){
+        if(gameOver){
+            if(draw){
             displayText = "Its a draw";
+            }else{
+                if(player){
+                    displayText = "Player 2 Won";
+                }else{
+                    displayText = "Player 1 Won";
+                }
+            }
+            displayText += "\n Press Enter to clear the board.";
+            
         }
-
     }
     return 0;
 }
